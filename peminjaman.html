@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Laporan Inventaris</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- SIDEBAR -->
+        <div class="col-2 sidebar vh-100 p-3 d-flex flex-column">
+          <h5 class="fw-bold text-white mb-4">ASLAB</h5>
+
+          <nav class="nav flex-column gap-2 flex-grow-1">
+            <a class="nav-link" href="dashboard.html">Dashboard</a>
+            <a class="nav-link" href="kegiatan.html">Manajemen Kegiatan</a>
+            <a class="nav-link active" href="laporan-inventaris.html"
+              >Laporan Inventaris</a
+            >
+          </nav>
+
+          <hr class="text-white opacity-50" />
+          <a href="login.html" class="nav-link text-danger fw-semibold"
+            >Logout</a
+          >
+        </div>
+
+        <!-- KONTEN -->
+        <div class="col-10 p-0">
+          <nav class="navbar bg-white border-bottom px-4">
+            <span class="navbar-brand fw-semibold">Laporan Inventaris</span>
+            <span>Admin</span>
+          </nav>
+
+          <div class="p-4">
+            <!-- TAB -->
+            <ul class="nav nav-tabs mb-4">
+              <li class="nav-item">
+                <button
+                  class="nav-link active"
+                  data-bs-toggle="tab"
+                  data-bs-target="#barang"
+                >
+                  Data Lab & Barang
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#pinjam"
+                >
+                  Peminjaman
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#kembali"
+                >
+                  Pengembalian
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#riwayat"
+                >
+                  Riwayat
+                </button>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+              <!-- DATA LAB & BARANG -->
+              <div class="tab-pane fade show active" id="barang">
+                <div class="card shadow-sm mb-4">
+                  <div class="card-body">
+                    <h5>Data Lab</h5>
+
+                    <table class="table table-bordered mt-3">
+                      <thead>
+                        <tr>
+                          <th>Nama Lab</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Lab RPL</td>
+                          <td>
+                            <span class="badge bg-success">Tersedia</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Lab KOMPUTASI</td>
+                          <td>
+                            <span class="badge bg-warning text-dark"
+                              >Dipinjam</span
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h5>Data Barang</h5>
+
+                    <table class="table table-bordered mt-3">
+                      <thead>
+                        <tr>
+                          <th>Nama Barang</th>
+                          <th>Lab</th>
+                          <th>Jumlah</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Proyektor</td>
+                          <td>Lab RPL</td>
+                          <td>2</td>
+                          <td>
+                            <span class="badge bg-success">Tersedia</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Kabel LAN</td>
+                          <td class="text-muted fst-italic">Umum</td>
+                          <td>5</td>
+                          <td>
+                            <span class="badge bg-warning text-dark"
+                              >Dipinjam</span
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PEMINJAMAN -->
+              <div class="tab-pane fade" id="pinjam">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h5>Form Peminjaman</h5>
+
+                    <!-- DATA PEMINJAM -->
+                    <div class="row g-3 mt-2">
+                      <div class="col-md-4">
+                        <input
+                          class="form-control"
+                          placeholder="Nama Peminjam"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input class="form-control" placeholder="NIM" />
+                      </div>
+                      <div class="col-md-4">
+                        <input class="form-control" placeholder="No WhatsApp" />
+                      </div>
+                    </div>
+
+                    <hr />
+
+                    <!-- PILIHAN -->
+                    <div class="mb-2 fw-semibold">Jenis Peminjaman</div>
+
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="cekLab"
+                      />
+                      <label class="form-check-label">Lab</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="cekBarang"
+                      />
+                      <label class="form-check-label">Barang</label>
+                    </div>
+
+                    <!-- FORM LAB -->
+                    <div id="formLab" class="row g-3 mt-3 d-none">
+                      <div class="col-md-6">
+                        <select class="form-select">
+                          <option selected disabled>Pilih Lab</option>
+                          <option>Lab RPL</option>
+                          <option>Lab SC</option>
+                          <option>Lab KOMPUTASI</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="date" class="form-control" />
+                      </div>
+                    </div>
+
+                    <!-- FORM BARANG -->
+                    <div id="formBarang" class="row g-3 mt-3 d-none">
+                      <div class="col-md-6">
+                        <input class="form-control" placeholder="Nama Barang" />
+                      </div>
+                      <div class="col-md-3">
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="Jumlah"
+                        />
+                      </div>
+                      <div class="col-md-3">
+                        <input type="date" class="form-control" />
+                      </div>
+                    </div>
+
+                    <div class="mt-4">
+                      <button class="btn btn-success">Simpan Peminjaman</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PENGEMBALIAN -->
+              <div class="tab-pane fade" id="kembali">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h5>Form Pengembalian</h5>
+
+                    <form class="row g-3 mt-2">
+                      <!-- Nama -->
+                      <div class="col-md-4">
+                        <input
+                          class="form-control"
+                          placeholder="Nama Peminjam"
+                        />
+                      </div>
+
+                      <!-- Jenis Pengembalian -->
+                      <div class="col-md-4">
+                        <label class="fw-semibold">Jenis Pengembalian</label>
+                        <div>
+                          <div class="form-check form-check-inline">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="jenisKembali"
+                              id="kembaliLab"
+                              checked
+                            />
+                            <label class="form-check-label" for="kembaliLab"
+                              >Lab</label
+                            >
+                          </div>
+
+                          <div class="form-check form-check-inline">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="jenisKembali"
+                              id="kembaliBarang"
+                            />
+                            <label class="form-check-label" for="kembaliBarang">
+                              Barang
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Pilih Lab -->
+                      <div class="col-md-4">
+                        <select class="form-select" id="fieldLab">
+                          <option selected disabled>Pilih Lab</option>
+                          <option>Lab RPL</option>
+                          <option>Lab SC</option>
+                          <option>Lab KOMPUTASI</option>
+                        </select>
+                      </div>
+
+                      <!-- Nama Barang -->
+                      <div class="col-md-4">
+                        <input
+                          class="form-control"
+                          id="fieldBarang"
+                          placeholder="Nama Barang (jika pengembalian barang)"
+                        />
+                      </div>
+
+                      <!-- Tanggal -->
+                      <div class="col-md-4">
+                        <input type="date" class="form-control" />
+                      </div>
+
+                      <!-- Button -->
+                      <div class="col-12">
+                        <button class="btn btn-primary">
+                          Simpan Pengembalian
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RIWAYAT -->
+              <div class="tab-pane fade" id="riwayat">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h5>Riwayat Peminjaman</h5>
+
+                    <table class="table table-bordered mt-3 align-middle">
+                      <thead>
+                        <tr>
+                          <th>Nama</th>
+                          <th>Jenis</th>
+                          <th>Barang</th>
+                          <th>Lab</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Barang + Lab -->
+                        <tr>
+                          <td>Zia</td>
+                          <td>Barang</td>
+                          <td>Proyektor</td>
+                          <td>Lab RPL</td>
+                          <td>
+                            <span class="badge bg-success">Dikembalikan</span>
+                          </td>
+                        </tr>
+
+                        <!-- Barang saja -->
+                        <tr>
+                          <td>Haidar</td>
+                          <td>Barang</td>
+                          <td>Kabel LAN</td>
+                          <td>-</td>
+                          <td>
+                            <span class="badge bg-warning text-dark"
+                              >Dipinjam</span
+                            >
+                          </td>
+                        </tr>
+
+                        <!-- Lab saja -->
+                        <tr>
+                          <td>Alya</td>
+                          <td>Lab</td>
+                          <td>-</td>
+                          <td>Lab KOMPUTASI</td>
+                          <td>
+                            <span class="badge bg-warning text-dark"
+                              >Dipinjam</span
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const cekLab = document.getElementById("cekLab");
+      const cekBarang = document.getElementById("cekBarang");
+      const formLab = document.getElementById("formLab");
+      const formBarang = document.getElementById("formBarang");
+
+      cekLab.addEventListener("change", () => {
+        formLab.classList.toggle("d-none", !cekLab.checked);
+      });
+
+      cekBarang.addEventListener("change", () => {
+        formBarang.classList.toggle("d-none", !cekBarang.checked);
+      });
+    </script>
+    <script>
+      const radioLab = document.getElementById("kembaliLab");
+      const radioBarang = document.getElementById("kembaliBarang");
+      const fieldLab = document.getElementById("fieldLab");
+      const fieldBarang = document.getElementById("fieldBarang");
+
+      function updatePengembalian() {
+        if (radioLab.checked) {
+          fieldLab.disabled = false;
+          fieldBarang.disabled = true;
+          fieldBarang.value = "";
+        } else {
+          fieldLab.disabled = true;
+          fieldLab.selectedIndex = 0;
+          fieldBarang.disabled = false;
+        }
+      }
+
+      radioLab.addEventListener("change", updatePengembalian);
+      radioBarang.addEventListener("change", updatePengembalian);
+
+      // default saat halaman dibuka
+      updatePengembalian();
+    </script>
+    s
+  </body>
+</html>
