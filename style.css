@@ -1,0 +1,173 @@
+/* SIDEBAR */
+.sidebar {
+  background: linear-gradient(
+    180deg,
+    #6bbcff 0%,
+    /* biru atas (lebih muda, ga mateng) */ #55b2f7 45%,
+    /* biru utama */ #3aa9f2 100% /* biru bawah (lebih kuat, ga pudar) */
+  );
+}
+
+/* TEKS JUDUL */
+.sidebar h5 {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* TEKS MENU */
+.sidebar .nav-link {
+  color: #0f172a; /* BUKAN PUTIH */
+  font-weight: 700; /* BOLD */
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+/* MENU AKTIF */
+.sidebar .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #0f172a;
+}
+
+/* HOVER */
+.sidebar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+/* GARIS */
+.sidebar hr {
+  border: none;
+  height: 1px;
+  background-color: rgba(15, 23, 42, 0.4);
+}
+
+/* LOGOUT */
+.sidebar .nav-link.text-danger {
+  color: #d90429 !important; /* merah jelas */
+  font-weight: 700;
+}
+
+/* ================= LOGIN PAGE ================= */
+
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #5ecbff, #b9e9ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.login-card {
+  width: 420px;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.login-logo {
+  width: 60px;
+  height: 60px;
+  background: #e9f7ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -70px auto 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-logo i {
+  font-size: 28px;
+  color: #2aa9e0;
+}
+
+.login-input {
+  border-radius: 12px;
+  padding-left: 45px;
+  background: #f4fbff;
+  border: none;
+}
+
+.login-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #2aa9e0;
+}
+
+.btn-login {
+  background: #2aa9e0;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 600;
+}
+
+.btn-login:hover {
+  background: #1e95c8;
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #4dabf7, #74c0fc);
+}
+
+.sidebar .nav-link {
+  color: #fff;
+  font-weight: 500;
+}
+
+.sidebar .nav-link.active {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+}
+
+/* ===== AUTH (LOGIN & REGISTER) ===== */
+.auth-body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6ec1ff, #b6e4ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.auth-icon {
+  width: 70px;
+  height: 70px;
+  background: #e9f6ff;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.auth-input {
+  height: 45px;
+  border-radius: 10px;
+}
+
+.auth-btn {
+  background: #2ea8ff;
+  color: #fff;
+  border-radius: 10px;
+  height: 45px;
+  font-weight: 600;
+}
+
+.auth-btn:hover {
+  background: #1c96f0;
+}
