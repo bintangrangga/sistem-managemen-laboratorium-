@@ -1,11 +1,11 @@
-# DOKUMENTASI API  
+# DOKUMENTASI API
 ## Sistem Manajemen Kegiatan Laboratorium
 
 ---
 
 ## 1. Pendahuluan
 
-Dokumentasi ini berisi daftar endpoint API yang digunakan dalam Sistem Manajemen Kegiatan Laboratorium. API ini berfungsi sebagai penghubung antara backend dengan frontend website maupun mobile.
+Dokumentasi ini berisi daftar endpoint API yang digunakan dalam Sistem Manajemen Kegiatan Laboratorium. API ini berfungsi sebagai penghubung antara backend dengan frontend website maupun mobile menggunakan sistem **REST API berbasis token authorization**.
 
 ---
 
@@ -48,7 +48,35 @@ http://localhost/kegiatan_lab/api/
 
 ---
 
-## 4. Authentication / Login
+## 4. Authentication System
+
+Sistem menggunakan **Bearer Token Authorization**.
+
+Flow:
+
+1. User login
+2. Server generate token
+3. Token dikirim ke frontend
+4. Frontend menyimpan token
+5. Setiap request wajib mengirim Authorization Header
+
+Format Header:
+
+```http
+Authorization: Bearer YOUR_TOKEN
+```
+
+Contoh:
+
+```http
+Authorization: Bearer abc123xyz456token
+```
+
+> Semua endpoint **kecuali Login** wajib menggunakan token.
+
+---
+
+## 5. Authentication / Login
 
 ### Endpoint
 
@@ -69,9 +97,11 @@ POST /login.php
 {
   "status": "success",
   "message": "Login berhasil",
+  "token": "abc123xyz456token",
   "data": {
     "id": 1,
     "nama": "Bintang Rangga Saputra",
+    "email": "bintang23@lab.com",
     "role": "super_admin"
   }
 }
@@ -79,7 +109,34 @@ POST /login.php
 
 ---
 
-## 5. API Users
+## 6. Logout
+
+### Endpoint
+
+```http
+POST /logout.php
+```
+
+### Header
+
+```http
+Authorization: Bearer YOUR_TOKEN
+```
+
+### Response
+
+```json
+{
+  "status": "success",
+  "message": "Logout berhasil"
+}
+```
+
+Setelah logout, token akan dihapus dari database dan tidak bisa digunakan kembali.
+
+---
+
+## 7. API Users
 
 ### Endpoint
 
@@ -88,6 +145,12 @@ GET /users.php
 POST /users.php
 PUT /users.php
 DELETE /users.php
+```
+
+### Header
+
+```http
+Authorization: Bearer YOUR_TOKEN
 ```
 
 ### Field
@@ -111,7 +174,7 @@ DELETE /users.php
 
 ---
 
-## 6. API Kegiatan
+## 8. API Kegiatan
 
 ### Endpoint
 
@@ -120,6 +183,12 @@ GET /kegiatan.php
 POST /kegiatan.php
 PUT /kegiatan.php
 DELETE /kegiatan.php
+```
+
+### Header
+
+```http
+Authorization: Bearer YOUR_TOKEN
 ```
 
 ### Field
@@ -137,7 +206,7 @@ DELETE /kegiatan.php
 
 ---
 
-## 7. API Absensi
+## 9. API Absensi
 
 ### Endpoint
 
@@ -146,6 +215,12 @@ GET /absensi.php
 POST /absensi.php
 PUT /absensi.php
 DELETE /absensi.php
+```
+
+### Header
+
+```http
+Authorization: Bearer YOUR_TOKEN
 ```
 
 ### Field
@@ -163,25 +238,9 @@ DELETE /absensi.php
 - sakit
 - alfa
 
-### Response
-
-```json
-{
-  "status": "success",
-  "data": [
-    {
-      "id": "1",
-      "nama_user": "Bintang Rangga Saputra",
-      "nama_kegiatan": "Seminar AI",
-      "status_kehadiran": "hadir"
-    }
-  ]
-}
-```
-
 ---
 
-## 8. API Inventaris
+## 10. API Inventaris
 
 ### Endpoint
 
@@ -190,6 +249,12 @@ GET /inventaris.php
 POST /inventaris.php
 PUT /inventaris.php
 DELETE /inventaris.php
+```
+
+### Header
+
+```http
+Authorization: Bearer YOUR_TOKEN
 ```
 
 ### Field
@@ -216,7 +281,7 @@ DELETE /inventaris.php
 
 ---
 
-## 9. API Peminjaman
+## 11. API Peminjaman
 
 ### Endpoint
 
@@ -224,6 +289,12 @@ DELETE /inventaris.php
 GET /peminjaman.php
 POST /peminjaman.php
 PUT /peminjaman.php
+```
+
+### Header
+
+```http
+Authorization: Bearer YOUR_TOKEN
 ```
 
 ### Request Body
@@ -242,19 +313,19 @@ PUT /peminjaman.php
 
 ### Logic
 
-#### Saat meminjam:
+#### Saat meminjam
 - cek stok
 - insert transaksi
 - kurangi stok inventaris
 
-#### Saat mengembalikan:
+#### Saat mengembalikan
 - update status
 - isi tanggal_kembali
 - tambah stok inventaris
 
 ---
 
-## 10. API Dokumentasi
+## 12. API Dokumentasi
 
 ### Endpoint
 
@@ -262,6 +333,12 @@ PUT /peminjaman.php
 GET /dokumentasi.php
 POST /dokumentasi.php
 DELETE /dokumentasi.php
+```
+
+### Header
+
+```http
+Authorization: Bearer YOUR_TOKEN
 ```
 
 ### Field
@@ -289,7 +366,7 @@ DELETE /dokumentasi.php
 
 ---
 
-## 11. Hak Akses Sistem
+## 13. Hak Akses Sistem
 
 ### Super Admin
 Memiliki akses penuh terhadap seluruh sistem:
@@ -314,6 +391,7 @@ Memiliki akses:
 Memiliki akses:
 
 - Login
+- Logout
 - Lihat kegiatan
 - Absensi
 - Peminjaman
@@ -321,6 +399,19 @@ Memiliki akses:
 
 ---
 
-## 12. Penutup
+## 14. Security Features
 
-Backend API Sistem Manajemen Kegiatan Laboratorium telah dirancang agar dapat digunakan oleh frontend website maupun frontend mobile melalui endpoint yang sama, sehingga pengembangan sistem menjadi lebih efisien, terintegrasi, dan mudah dipelihara.
+Fitur keamanan backend:
+
+- Password Hashing
+- Token Authorization
+- Protected Endpoint
+- Logout Token Invalidation
+- CORS Enabled
+- Role Based Access Ready
+
+---
+
+## 15. Penutup
+
+Backend API Sistem Manajemen Kegiatan Laboratorium telah dirancang agar dapat digunakan oleh frontend website maupun frontend mobile melalui endpoint yang sama, aman, terintegrasi, dan mudah dikembangkan.
